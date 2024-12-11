@@ -1,0 +1,45 @@
+---
+import ReactIcon from './icons/React.astro';
+import FirebaseIcon from './icons/Firebase.astro';
+import BootstrapIcon from './icons/Boostrap.astro';
+
+const TAGS = {
+  React: { name: "React", icon: ReactIcon, class: "bg-black text-white" },
+  Firebase: { name: "Firebase", icon: FirebaseIcon, class: "bg-orange-900 text-white" },
+  Bootstrap: { name: "Bootstrap", icon: BootstrapIcon, class: "bg-white text-black" }
+};
+
+const PROJECTS = [
+  {
+    title: "Giotecnika App",
+    description: "Tienda e-commerce de productos.",
+    link: "https://giotecnika.netlify.app",
+    github: "https://github.com/zeuschris/Giotecnika",
+    image: "/projects/giotecnika.webp",
+    tags: [TAGS.React, TAGS.Firebase, TAGS.Bootstrap],
+  },
+];
+---
+{
+PROJECTS.map(({ title, description, tags, image }) => (
+  <article>
+    <h3 class="text-2xl font-semibold text-yellow-200 mb-2">{title}</h3>
+    <p class="text-lg mb-4 text-pretty">{description}</p>
+    <ul class="flex gap-x-2 flex-row mb-4">
+      {tags.map((tag) => (
+        <li>
+          <span class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2`}>
+            <tag.icon class="size-4"/>
+            {tag.name}
+          </span>
+        </li>
+      ))}
+    </ul>
+    <img 
+      class="rounded shadow-2xl shadow-white/10" 
+      src={image} 
+      alt={`Captura de pantalla del proyecto ${image}`} 
+    />
+  </article>
+))
+}
