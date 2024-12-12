@@ -2,27 +2,41 @@
 import ReactIcon from './icons/React.astro';
 import FirebaseIcon from './icons/Firebase.astro';
 import BootstrapIcon from './icons/Boostrap.astro';
+import SvelteIcon from './icons/Svelte.astro';
+import JavaScriptIcon from './icons/JavaScript.astro';
+import CSSIcon from './icons/CSS.astro';
 
 const TAGS = {
   React: { name: "React", icon: ReactIcon, class: "bg-black text-white" },
   Firebase: { name: "Firebase", icon: FirebaseIcon, class: "bg-orange-900 text-white" },
-  Bootstrap: { name: "Bootstrap", icon: BootstrapIcon, class: "bg-white text-black" }
+  Bootstrap: { name: "Bootstrap", icon: BootstrapIcon, class: "bg-white text-black" },
+  Svelte: { name: "Svelte", icon: SvelteIcon, class: "bg-[#FF3E00] text-white" },
+  JavaScript: { name: "JavaScript", icon: JavaScriptIcon, class: "bg-[#333333] text-white" },
+  CSS: { name: "CSS", icon: CSSIcon, class: "bg-[#264de4] text-white " }
 };
 
 const PROJECTS = [
   {
     title: "Giotecnika App",
-    description: "Tienda e-commerce de productos.",
+    description: 'Creación y diseño de una tienda en línea enfocada en ofrecer una experiencia de usuario rápida y fluida. Implementé un carrito de compras interactivo y gestioné la integración dinámica de productos, asegurando un rendimiento óptimo.',
     link: "https://giotecnika.netlify.app",
     github: "https://github.com/zeuschris/Giotecnika",
     image: "/projects/giotecnika.webp",
     tags: [TAGS.React, TAGS.Firebase, TAGS.Bootstrap],
   },
+  {
+    title: "Weather App",
+    description: 'Desarrollé una aplicación web para consultar el clima en tiempo real utilizando **Svelte** como framework principal y **WeatherApi** para obtener datos meteorológicos actualizados. La aplicación permite a los usuarios conocer las condiciones climáticas actuales de Buenos Aires.',
+    link: "https://weather-chris.netlify.app",
+    github: "https://github.com/zeuschris/Weather-App",
+    image: "/projects/weather.webp",
+    tags: [TAGS.Svelte, TAGS.CSS, TAGS.JavaScript],
+  },
 ];
 ---
 {
-PROJECTS.map(({ title, description, tags, image }) => (
-  <article>
+PROJECTS.map(({ title, description, tags, image, link }) => (
+  <article class="mb-20">
     <h3 class="text-2xl font-semibold text-yellow-200 mb-2">{title}</h3>
     <p class="text-lg mb-4 text-pretty">{description}</p>
     <ul class="flex gap-x-2 flex-row mb-4">
@@ -36,10 +50,19 @@ PROJECTS.map(({ title, description, tags, image }) => (
       ))}
     </ul>
     <img 
-      class="rounded shadow-2xl shadow-white/10" 
+      class="rounded shadow-2xl shadow-white/10 mb-10" 
       src={image} 
       alt={`Captura de pantalla del proyecto ${image}`} 
     />
+    <a 
+    class="px-4 py-3 sm:px-3 sm:py-1 md:px-3 md:py-2 rounded-full text-white text-opacity-80 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-purple-600 hover:to-blue-500 transition-all duration-300" 
+    href={link} 
+    target="_blank" 
+    rel="noopener noreferrer">
+      Ir al proyecto
+    </a>
   </article>
 ))
 }
+
+
